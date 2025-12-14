@@ -1,26 +1,21 @@
-# Free Tailwind admin dashboard template
+# History-of-Lab-Records
 
-![Mosaic Tailwind admin template preview](https://github.com/cruip/tailwind-dashboard-template/assets/2683512/ef306423-3b89-4d0c-be80-9c5c682478d1)
+![History-of-Lab-Records preview](https://github.com/ScientistSameer/History-of-Lab-Records/assets/2683512/ef306423-3b89-4d0c-be80-9c5c682478d1)
 
-**Mosaic Lite** is a responsive admin dashboard template built on top of Tailwind CSS and fully coded in React. It comes with several pre-coded charts (built with Chart.js 3) and widgets, and it's a great starting for anyone who wants to create a user interface for SaaS products, administrator dashboards, modern web apps, and more.
+**History-of-Lab-Records** is a responsive admin dashboard template built on top of Tailwind CSS and fully coded in React. It comes with several pre-coded charts (built with Chart.js 3) and widgets, and it's a great starting point for anyone who wants to create a user interface for managing lab records, dashboards for research data, modern web apps, and more.
 
-**UPDATE 2025-02-02** Added Tailwind v4 support!
+**UPDATE 2025-12-15** Added Tailwind v4 support and integrated collaboration, researchers, and labs modules with dummy backend APIs.
 
-Use it for whatever you want, and be sure to reach us out on [Twitter](https://twitter.com/Cruip_com) if you build anything cool/useful with it.
 
-Created and maintained with ❤️ by [Cruip.com](https://cruip.com/).
+Created and maintained with ❤️ by [Scientist Sameer](https://github.com/ScientistSameer).
 
 ## Live demo
 
-Check the live demo here 👉️ [https://mosaic.cruip.com/](https://mosaic.cruip.com/)
-
-## Mosaic Pro
-
-[![Mosaic Tailwind Admin Template](https://github.com/cruip/tailwind-dashboard-template/assets/2683512/2b4d0fae-bb07-4229-8a8a-48005f2f33cb)](https://cruip.com/mosaic/)
+Check the live demo here 👉️ [https://github.com/ScientistSameer/History-of-Lab-Records](https://github.com/ScientistSameer/History-of-Lab-Records)
 
 ## Design files
 
-If you need the design files, you can download them from Figma's Community 👉 https://bit.ly/3sigqHe
+If you need the design files, you can access them on Figma's Community 👉 https://bit.ly/3sigqHe
 
 ## Table of contents
 
@@ -40,43 +35,42 @@ If you need the design files, you can download them from Figma's Community 👉 
 This project was bootstrapped with [Vite](https://vitejs.dev/).
 
 ### Project setup
-```
 npm install
-```
+
+graphql
+Copy code
 
 #### Compiles and hot-reloads for development
-```
 npm run dev
-```
+
+graphql
+Copy code
 
 #### Compiles and minifies for production
-```
 npm run build
-```
+
+pgsql
+Copy code
 
 #### Customize configuration
 See [Configuration Reference](https://vitejs.dev/guide/).
 
 ### Support notes
-We are shipping our templates with a very basic React configuration to let you quickly get into the development process, but we don't discourage you from using any other configuration or framework built on the top of React. So, please note that any request dealing with React (e.g. extra features, customisations, et cetera) is to be considered out of the support scope.
+We are shipping this template with a basic React configuration to let you quickly get into the development process, but you can use any other configuration or framework built on React. Please note that any request dealing with React (e.g., extra features, customizations, etc.) is out of the support scope.
 
-For more information about what support covers, please see our (FAQs)[https://cruip.com/faq/].
-
-## Credits
-
-- [Nucleo](https://nucleoapp.com/)
 
 ## Terms and License
 
-- Released under the [GPL](https://www.gnu.org/licenses/gpl-3.0.html).
-- Copyright 2020 [Cruip](https://cruip.com/).
+- Released under the [MIT License](https://opensource.org/licenses/MIT).
+- Copyright 2025 [Scientist Sameer](https://github.com/ScientistSameer).
 - Use it for personal and commercial projects, but please don’t republish, redistribute, or resell the template.
 - Attribution is not required, although it is really appreciated.
 
 ## About Us
 
-We're an Italian developer/designer duo creating high-quality design/code resources for developers, makers, and startups.
+This project is maintained by Scientist Sameer, providing high-quality admin dashboards and research record management tools for developers, researchers, and academic teams.
 
 ## Stay in the loop
 
-If you would like to know when we release new resources, you can follow [@pacovitiello](https://x.com/pacovitiello) and [@DavidePacilio](https://x.com/DavidePacilio) on X, or you can subscribe to our [newsletter](https://cruip.com/newsletter/).
+
+If you would like to know when new resources or updates are released, you can follow [Scientist Sameer](https://x.com/ScientistSameer) on X.
