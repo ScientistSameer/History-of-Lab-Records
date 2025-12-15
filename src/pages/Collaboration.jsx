@@ -1,60 +1,63 @@
-import React, { useState } from "react";
-
-const collaborations = [
-  {
-    id: 1,
-    labs: "AI Lab ↔ Computer Vision Lab",
-    description: "Similar domain, matching workload & expertise",
-    email: "cvlab@example.com",
-  },
-  {
-    id: 2,
-    labs: "Bioinformatics Lab ↔ Genetics Lab",
-    description: "Cross-disciplinary collaboration on genome analysis",
-    email: "geneticslab@example.com",
-  },
-  {
-    id: 3,
-    labs: "Robotics Lab ↔ Mechanical Design Lab",
-    description: "Joint project on automation & prototyping",
-    email: "roboticslab@example.com",
-  },
-];
+import { useEffect, useState } from "react";
+import { getSuggestions, generateEmail } from "../api/collaboration";
+import { apiFetch } from "../api/client";
 
 export default function Collaboration() {
-  const [selectedCollab, setSelectedCollab] = useState(null);
+  const [suggestions, setSuggestions] = useState([]);
+  const [emailPreview, setEmailPreview] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  const handleGenerateEmail = (collab) => {
-    setSelectedCollab(collab);
-    const subject = encodeURIComponent(`Collaboration Opportunity: ${collab.labs}`);
-    const body = encodeURIComponent(
-      `Hello,\n\nI am interested in collaborating with your team on "${collab.labs}". Please let me know how we can proceed.\n\nBest regards,`
-    );
+  useEffect(() => {
+    getSuggestions().then(setSuggestions);
+  }, []);
 
-    window.location.href = `mailto:${collab.email}?subject=${subject}&body=${body}`;
+  const handleGenerateEmail = async (suggestion) => {
+    setLoading(true);
+    try {
+      const res = await generateEmail({
+        from_lab_id: suggestion.from_lab_id,
+        to_lab_id: suggestion.to_lab_id,
+      });
+      setEmailPreview(res);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleSaveEmail = async () => {
+    await apiFetch("/emails", {
+      method: "POST",
+      body: JSON.stringify(emailPreview),
+    });
+
+    alert("Email saved successfully");
+    setEmailPreview(null);
   };
 
   return (
-    <div className="px-6 py-6 min-h-screen bg-gray-100 dark:bg-gray-900">
-      <h1 className="text-3xl font-bold mb-6 text-gray-800 dark:text-gray-100">
+    <div className="px-6 py-6">
+      <h1 className="text-2xl font-bold mb-6">
         Collaboration Opportunities
       </h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-        {collaborations.map((collab) => (
+      {/* Suggestions */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {suggestions.map((s) => (
           <div
-            key={collab.id}
-            className="bg-white dark:bg-gray-800 p-5 rounded-xl shadow hover:shadow-lg transition-shadow duration-200"
+            key={s.id}
+            className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow"
           >
-            <h3 className="font-semibold text-lg text-gray-800 dark:text-gray-100">
-              {collab.labs}
+            <h3 className="font-semibold">
+              {s.from_lab} ↔ {s.to_lab}
             </h3>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
-              {collab.description}
+            <p className="text-sm text-gray-500">
+              Similar domain & expertise
             </p>
+
             <button
-              onClick={() => handleGenerateEmail(collab)}
-              className="mt-4 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
+              onClick={() => handleGenerateEmail(s)}
+              className="btn mt-3"
+              disabled={loading}
             >
               Generate Collaboration Email
             </button>
@@ -62,10 +65,34 @@ export default function Collaboration() {
         ))}
       </div>
 
-      {selectedCollab && (
-        <div className="mt-6 p-4 bg-indigo-50 dark:bg-indigo-900 rounded-lg text-gray-800 dark:text-gray-100">
-          <h4 className="font-semibold mb-2">Selected Collaboration:</h4>
-          <p>{selectedCollab.labs}</p>
+      {/* Email Preview Modal */}
+      {emailPreview && (
+        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+          <div className="bg-white dark:bg-gray-900 p-6 rounded-lg w-full max-w-2xl">
+            <h2 className="text-xl font-bold mb-2">
+              Email Preview
+            </h2>
+
+            <p className="text-sm mb-4 whitespace-pre-line">
+              {emailPreview.content}
+            </p>
+
+            <div className="flex justify-end gap-3">
+              <button
+                onClick={() => setEmailPreview(null)}
+                className="btn-secondary"
+              >
+                Cancel
+              </button>
+
+              <button
+                onClick={handleSaveEmail}
+                className="btn-primary"
+              >
+                Save Email
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </div>

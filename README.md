@@ -37,20 +37,15 @@ This project was bootstrapped with [Vite](https://vitejs.dev/).
 ### Project setup
 npm install
 
-graphql
-Copy code
+
 
 #### Compiles and hot-reloads for development
 npm run dev
 
-graphql
-Copy code
 
 #### Compiles and minifies for production
 npm run build
 
-pgsql
-Copy code
 
 #### Customize configuration
 See [Configuration Reference](https://vitejs.dev/guide/).
@@ -74,3 +69,4 @@ This project is maintained by Scientist Sameer, providing high-quality admin das
 
 
 If you would like to know when new resources or updates are released, you can follow [Scientist Sameer](https://x.com/ScientistSameer) on X.
+1006210 (Sprint 2: Backend integration and email history feature)
