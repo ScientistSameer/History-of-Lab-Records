@@ -57,11 +57,11 @@ const Dashboard = () => {
             {/* Cards grid */}
             <div className="grid grid-cols-12 gap-6">
               {/* MVP cards */}
-              <LabSummaryCard />
+              {/* <LabSummaryCard />
               <ResearchDomainCard />
               <CollaborationCard />
               <AIInsightsCard />
-              <ResearchersOverviewCard />
+              <ResearchersOverviewCard /> */}
 
               {/* Existing cards */}
               <DashboardCard01 />
