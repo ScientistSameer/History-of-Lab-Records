@@ -23,30 +23,45 @@ emails = []
 
 @router.get("/")
 def get_collaborations():
-    return collaborations
+    return [
+        {
+            "id": 1,
+            "from_lab": "AI Lab",
+            "to_lab": "Computer Vision Lab",
+            "score": 92
+        },
+        {
+            "id": 2,
+            "from_lab": "Bioinformatics Lab",
+            "to_lab": "Genetics Lab",
+            "score": 88
+        }
+    ]
+
 
 @router.post("/generate-email")
-def generate_email(lab_pair: str):
-    email = {
-        "to": "collab@university.edu",
-        "subject": f"Collaboration Opportunity: {lab_pair}",
-        "body": f"""
+def generate_email(payload: dict):
+    content = f"""
 Hello,
 
-We identified a strong collaboration opportunity between:
-{lab_pair}
-
-Please let us know if you are interested.
+We identified a strong collaboration opportunity between
+{payload['from_lab']} and {payload['to_lab']}.
 
 Regards,
-MCP Atlas System
-""",
-        "timestamp": datetime.utcnow()
+Atlas System
+"""
+    email = {
+        "id": len(emails) + 1,
+        "from_lab": payload["from_lab"],
+        "to_lab": payload["to_lab"],
+        "subject": "Collaboration Opportunity",
+        "content": content,
+        "created_at": datetime.utcnow()
     }
-
     emails.append(email)
-    return {"message": "Email generated", "email": email}
+    return email
+
 
 @router.get("/emails")
-def email_history():
+def get_emails():
     return emails

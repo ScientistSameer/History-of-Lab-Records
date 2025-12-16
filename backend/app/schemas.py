@@ -28,6 +28,7 @@ class LabBase(BaseModel):
 
 class LabResponse(LabBase):
     id: int
+    researcher_count: int = 0
 
     class Config:
         from_attributes = True

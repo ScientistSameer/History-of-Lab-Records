@@ -1,8 +1,9 @@
 import { apiFetch } from "./client";
 
 export const login = (email, password) =>
-  apiFetch(`/users/login?email=${email}&password=${password}`, {
+  apiFetch("/users/login", {
     method: "POST",
+    body: JSON.stringify({ email, password, name: "temp" }),
   });
 
 export const register = (data) =>

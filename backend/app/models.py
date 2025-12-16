@@ -17,10 +17,14 @@ class Lab(Base):
     domain = Column(String)
     description = Column(String)
 
+    researchers = relationship("Researcher", back_populates="lab")
+
+
 class Researcher(Base):
     __tablename__ = "researchers"
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, nullable=False)
     field = Column(String)
     lab_id = Column(Integer, ForeignKey("labs.id"))
-    lab = relationship("Lab")
+
+    lab = relationship("Lab", back_populates="researchers")

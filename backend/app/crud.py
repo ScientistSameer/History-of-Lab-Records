@@ -15,11 +15,27 @@ def get_user_by_email(db: Session, email: str):
 
 # Labs
 def get_labs(db: Session):
-    return db.query(models.Lab).all()
+    labs = db.query(models.Lab).all()
+    results = []
+    for lab in labs:
+        results.append({
+            "id": lab.id,
+            "name": lab.name,
+            "domain": lab.domain,
+            "description": lab.description,
+            "researcher_count": len(lab.researchers)
+        })
+    return results
 
 def create_lab(db: Session, lab: schemas.LabBase):
     db_lab = models.Lab(**lab.dict())
     db.add(db_lab)
     db.commit()
     db.refresh(db_lab)
-    return db_lab
+    return {
+        "id": db_lab.id,
+        "name": db_lab.name,
+        "domain": db_lab.domain,
+        "description": db_lab.description,
+        "researcher_count": 0
+    }

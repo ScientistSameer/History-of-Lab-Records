@@ -8,17 +8,11 @@ export async function apiFetch(endpoint, options = {}) {
     headers: {
       "Content-Type": "application/json",
       ...(token && { Authorization: `Bearer ${token}` }),
-      ...options.headers,
     },
   });
 
   if (!res.ok) {
-    let err;
-    try {
-      err = await res.json();
-    } catch {
-      throw new Error("API Error");
-    }
+    const err = await res.json();
     throw err;
   }
 
