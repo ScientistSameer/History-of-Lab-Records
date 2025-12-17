@@ -1,67 +1,87 @@
-from fastapi import APIRouter
-from datetime import datetime
+from fastapi import APIRouter, Depends, HTTPException
+from sqlalchemy.orm import Session
+from .. import database, models
+from pydantic import BaseModel
+from ..email import send_email
+import os
 
 router = APIRouter(prefix="/collaboration", tags=["Collaboration"])
 
-# Dummy in-memory data (MVP)
-collaborations = [
-    {
-        "id": 1,
-        "labs": "AI Lab ↔ Computer Vision Lab",
-        "status": "Recommended",
-        "score": 92
-    },
-    {
-        "id": 2,
-        "labs": "Bioinformatics Lab ↔ Genetics Lab",
-        "status": "Pending",
-        "score": 88
-    }
-]
+# -----------------------------
+# Pydantic schema for email
+# -----------------------------
+class EmailRequest(BaseModel):
+    from_lab_id: int
+    to_lab_id: int
 
-emails = []
+# -----------------------------
+# DB dependency
+# -----------------------------
+def get_db():
+    db = database.SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
 
-@router.get("/")
-def get_collaborations():
-    return [
-        {
-            "id": 1,
-            "from_lab": "AI Lab",
-            "to_lab": "Computer Vision Lab",
-            "score": 92
-        },
-        {
-            "id": 2,
-            "from_lab": "Bioinformatics Lab",
-            "to_lab": "Genetics Lab",
-            "score": 88
-        }
-    ]
+# -----------------------------
+# Collaboration Suggestions
+# -----------------------------
+@router.get("/suggestions")
+def get_suggestions(db: Session = Depends(get_db)):
+    try:
+        labs = db.query(models.Lab).all()
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"DB Error: {e}")
 
+    suggestions = []
+    for i in range(len(labs)):
+        for j in range(i + 1, len(labs)):
+            # Match on domain safely
+            if labs[i].domain and labs[j].domain and labs[i].domain == labs[j].domain:
+                suggestions.append({
+                    "id": f"{labs[i].id}_{labs[j].id}",
+                    "from_lab_id": labs[i].id,
+                    "to_lab_id": labs[j].id,
+                    "from_lab": labs[i].name or f"Lab {labs[i].id}",
+                    "to_lab": labs[j].name or f"Lab {labs[j].id}",
+                    "shared_domain": labs[i].domain,
+                    "shared_fields": [r.field for r in labs[i].researchers if r.field] or ["Example field"]
+                })
+    return suggestions
 
-@router.post("/generate-email")
-def generate_email(payload: dict):
-    content = f"""
-Hello,
+# -----------------------------
+# Send Collaboration Email
+# -----------------------------
+@router.post("/send-email")
+def send_collaboration_email(req: EmailRequest, db: Session = Depends(get_db)):
+    from_lab = db.query(models.Lab).filter(models.Lab.id == req.from_lab_id).first()
+    to_lab = db.query(models.Lab).filter(models.Lab.id == req.to_lab_id).first()
 
-We identified a strong collaboration opportunity between
-{payload['from_lab']} and {payload['to_lab']}.
+    if not from_lab or not to_lab:
+        raise HTTPException(status_code=404, detail="Labs not found")
+    if not to_lab.email:
+        raise HTTPException(status_code=400, detail="Recipient lab does not have an email")
 
-Regards,
-Atlas System
+    subject = f"Collaboration Proposal from {from_lab.name}"
+    body = f"""
+Hello {to_lab.name} Team,
+
+We at {from_lab.name} noticed that our labs share expertise in {from_lab.domain}.
+We would like to explore potential collaboration opportunities with your team.
+
+Please let us know if you are interested.
+
+Best regards,
+{from_lab.name} Team
 """
-    email = {
-        "id": len(emails) + 1,
-        "from_lab": payload["from_lab"],
-        "to_lab": payload["to_lab"],
-        "subject": "Collaboration Opportunity",
-        "content": content,
-        "created_at": datetime.utcnow()
-    }
-    emails.append(email)
-    return email
 
+    FROM_EMAIL = os.getenv("SMTP_EMAIL")
+    EMAIL_PASSWORD = os.getenv("SMTP_PASSWORD")
 
-@router.get("/emails")
-def get_emails():
-    return emails
+    if not FROM_EMAIL or not EMAIL_PASSWORD:
+        raise HTTPException(status_code=500, detail="Email credentials not configured")
+
+    send_email(to_lab.email, subject, body, FROM_EMAIL, EMAIL_PASSWORD)
+
+    return {"status": "sent", "to": to_lab.email, "subject": subject, "body": body}
