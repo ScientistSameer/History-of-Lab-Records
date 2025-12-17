@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from .database import Base, engine
-from .routers import labs, researchers, users, collaboration
+from .routers import labs, researchers, users, collaboration, ideal_lab
 from .routers import doc_ingest
 from dotenv import load_dotenv
 import os
@@ -15,6 +15,7 @@ print("SMTP_PASSWORD:", os.getenv("SMTP_PASSWORD"))
 app = FastAPI(title="History of Lab Records: AI-Driven Analytics & Collaboration")
 app.include_router(doc_ingest.router)
 app.include_router(collaboration.router)
+app.include_router(ideal_lab.router)
 
 # CORS middleware
 app.add_middleware(

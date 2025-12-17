@@ -38,12 +38,34 @@ def get_researchers_by_lab(lab_id: int, db: Session = Depends(get_db)):
 @router.get("/summary")
 def get_researchers_summary(db: Session = Depends(get_db)):
     labs = db.query(models.Lab).all()
-    summary = []
+    researchers = db.query(models.Researcher).all()
+
+    total_researchers = len(researchers)
+    total_seniors = sum(1 for r in researchers if (r.seniority or "").lower() == "senior")
+    total_phd = sum(1 for r in researchers if (r.seniority or "").lower() == "phd")
+    total_interns = sum(1 for r in researchers if (r.seniority or "").lower() == "intern")
+    total_projects = sum(r.projects or 0 for r in researchers)
+
+    labs_summary = []
+
     for lab in labs:
-        summary.append({
+        lab_researchers = [r for r in researchers if r.lab_id == lab.id]
+
+        labs_summary.append({
             "lab_id": lab.id,
             "lab_name": lab.name,
-            "researchers_count": len(lab.researchers)
+            "total": len(lab_researchers),
+            "seniors": sum(1 for r in lab_researchers if (r.seniority or "").lower() == "senior"),
+            "phd": sum(1 for r in lab_researchers if (r.seniority or "").lower() == "phd"),
+            "interns": sum(1 for r in lab_researchers if (r.seniority or "").lower() == "intern"),
+            "projects": sum(r.projects or 0 for r in lab_researchers),
         })
-    total_researchers = db.query(models.Researcher).count()
-    return {"total_researchers": total_researchers, "labs": summary}
+
+    return {
+        "total_researchers": total_researchers,
+        "total_seniors": total_seniors,
+        "total_phd": total_phd,
+        "total_interns": total_interns,
+        "total_projects": total_projects,
+        "labs": labs_summary
+    }

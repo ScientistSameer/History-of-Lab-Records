@@ -26,10 +26,53 @@ def get_user_by_email(db: Session, email: str):
 # Labs (Identity)
 # ======================
 def create_lab(db: Session, lab: schemas.LabCreate):
-    db_lab = models.Lab(**lab.dict())
+    db_lab = models.Lab(
+        name=lab.name,
+        description=lab.description,
+        domain=lab.domain,
+        sub_domains=lab.sub_domains,
+        lab_type=lab.lab_type,
+        email=lab.email,
+        website=lab.website,
+        country=lab.country,
+        city=lab.city,
+        institute=lab.institute,
+        total_researchers=lab.total_researchers,
+        active_projects=lab.active_projects,
+        max_project_capacity=lab.max_project_capacity,
+        workload_score=lab.workload_score,
+        availability_status=lab.availability_status,
+        senior_researchers=lab.senior_researchers,
+        phd_students=lab.phd_students,
+        interns=lab.interns,
+        equipment_level=lab.equipment_level,
+        computing_resources=lab.computing_resources,
+        funding_level=lab.funding_level,
+        collaboration_interests=lab.collaboration_interests,
+        preferred_domains=lab.preferred_domains,
+        data_source=lab.data_source or "manual"
+    )
     db.add(db_lab)
     db.commit()
     db.refresh(db_lab)
+    return db_lab
+
+def update_lab(db: Session, lab_id: int, lab: schemas.LabCreate):
+    db_lab = db.query(models.Lab).filter(models.Lab.id == lab_id).first()
+    if not db_lab:
+        return None
+    for field, value in lab.dict().items():
+        setattr(db_lab, field, value)
+    db.commit()
+    db.refresh(db_lab)
+    return db_lab
+
+def delete_lab(db: Session, lab_id: int):
+    db_lab = db.query(models.Lab).filter(models.Lab.id == lab_id).first()
+    if not db_lab:
+        return None
+    db.delete(db_lab)
+    db.commit()
     return db_lab
 
 
