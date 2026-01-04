@@ -39,8 +39,8 @@ A comprehensive full-stack application for managing research laboratories, resea
 ### 1. Clone the Repository
 
 ```bash
-git clone <your-repo-url>
-cd lab-management-system
+git clone https://github.com/ScientistSameer/History-of-Lab-Records
+cd History-of-Lab-Records
 ```
 
 ### 2. Install Backend Dependencies
@@ -129,7 +129,7 @@ npm run preview
 ## 📁 Project Structure
 
 ```
-lab-management-and-collaboration-system/
+History-of-Lab-Records/
 ├── backend/                         # FastAPI server root
 │   ├── app/                         # Main application logic
 │   │   ├── routers/                 # API route handlers
@@ -415,7 +415,7 @@ This project is licensed under the MIT License.
 
 ## 👥 Authors
 
-- **Sameer Babar** - Initial work
+- **Sameer Babar** 
 
 ## 🙏 Acknowledgments
 
