@@ -1,0 +1,22 @@
+Cybersecurity and Network Defense Laboratory
+
+The Cybersecurity and Network Defense Laboratory is under the Department of Computer Engineering at SecureTech University, located in New York, USA. The lab focuses on network security, penetration testing, threat analysis, cryptography, and security protocols.
+
+The lab currently has 24 researchers in total, including 6 senior researchers, 12 PhD scholars, and 6 research interns.
+
+Currently managing 9 ongoing projects, with operational capacity up to 22 projects. Workload score is 7. The lab is available for new collaborations.
+
+The lab is equipped with secure server clusters, penetration testing labs, and advanced monitoring tools. Equipment level is medium, computing resources include cloud and server clusters, and funding is high from federal grants and industry sponsorships.
+
+The lab collaborates with cybersecurity firms, government agencies, and academic institutions. Open for collaboration in Cybersecurity, Network Security, Cryptography, and Threat Analysis.
+
+Contact email: cyber.lab@securetech.edu
+
+Website: https://cyber-lab.securetech.edu
+
+Country: USA
+City: New York
+Institute: SecureTech University
+Lab Type: Research Laboratory
+Availability: Available
+Preferred Domains: Cybersecurity, Network Security, Cryptography, Threat Analysis

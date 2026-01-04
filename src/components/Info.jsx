@@ -1,13 +1,24 @@
+// src/components/Info.jsx
+
 import React, { useState } from 'react';
 import Transition from './Transition';
 
 function Info({
   children,
   className,
-  containerClassName
+  containerClassName,
+  position = 'top' // ✅ NEW: Add position prop (default 'top')
 }) {
 
   const [infoOpen, setInfoOpen] = useState(false);
+
+  // ✅ NEW: Position classes based on prop
+  const positionClasses = {
+    top: 'bottom-full left-1/2 transform -translate-x-1/2 mb-2',
+    bottom: 'top-full left-1/2 transform -translate-x-1/2 mt-2',
+    left: 'right-full top-1/2 transform -translate-y-1/2 mr-2',
+    right: 'left-full top-1/2 transform -translate-y-1/2 ml-2'
+  };
 
   return (
     <div
@@ -27,11 +38,13 @@ function Info({
           <path d="M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm0 12c-.6 0-1-.4-1-1s.4-1 1-1 1 .4 1 1-.4 1-1 1zm1-3H7V4h2v5z" />
         </svg>
       </button>
-      <div className="z-10 absolute bottom-full left-1/2 transform -translate-x-1/2">
+      
+      {/* ✅ UPDATED: Use position-based classes */}
+      <div className={`z-10 absolute ${positionClasses[position]}`}>
         <Transition
           show={infoOpen}
           tag="div"
-          className={`bg-white border border-gray-200 p-3 rounded-sm shadow-lg overflow-hidden mb-2 ${containerClassName}`}
+          className={`bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-3 rounded-lg shadow-lg overflow-hidden ${containerClassName}`}
           enter="transition ease-out duration-200 transform"
           enterStart="opacity-0 -translate-y-2"
           enterEnd="opacity-100 translate-y-0"

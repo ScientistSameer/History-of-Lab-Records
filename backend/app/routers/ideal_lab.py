@@ -36,7 +36,7 @@ class IdealLabSchema(BaseModel):
     verified: bool = True
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 # DB dependency
 def get_db():

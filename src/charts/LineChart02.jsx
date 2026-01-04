@@ -3,14 +3,13 @@ import { useThemeProvider } from '../utils/ThemeContext';
 
 import { chartColors } from './ChartjsConfig';
 import {
-  Chart, LineController, LineElement, Filler, PointElement, LinearScale, TimeScale, Tooltip,
+  Chart, LineController, LineElement, Filler, PointElement, LinearScale, CategoryScale, Tooltip,
 } from 'chart.js';
-import 'chartjs-adapter-moment';
 
 // Import utilities
 import { formatValue } from '../utils/Utils';
 
-Chart.register(LineController, LineElement, Filler, PointElement, LinearScale, TimeScale, Tooltip);
+Chart.register(LineController, LineElement, Filler, PointElement, LinearScale, CategoryScale, Tooltip);
 
 function LineChart02({
   data,
@@ -51,14 +50,7 @@ function LineChart02({
             },
           },
           x: {
-            type: 'time',
-            time: {
-              parser: 'MM-DD-YYYY',
-              unit: 'month',
-              displayFormats: {
-                month: 'MMM YY',
-              },
-            },
+            type: 'category',
             border: {
               display: false,
             },
@@ -93,6 +85,7 @@ function LineChart02({
         maintainAspectRatio: false,
         resizeDelay: 200,
       },
+
       plugins: [
         {
           id: 'htmlLegend',

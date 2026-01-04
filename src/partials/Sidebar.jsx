@@ -22,15 +22,14 @@ function Sidebar({ sidebarExpanded, setSidebarExpanded }) {
         {/* Branding */}
         <div className="px-4 mb-4">
           <NavLink to="/" className="text-lg font-bold text-gray-800 dark:text-white">
-            NexaCore
+            IDEAL LABS-Collaboration Portal
           </NavLink>
         </div>
 
         <div className="flex-1 px-2">
 
-          {/* NEXACORE */}
           <h3 className="text-xs uppercase text-gray-400 dark:text-gray-500 font-semibold pl-3 mt-3">
-            NEXACORE
+            MAIN
           </h3>
           <ul className="mt-3 space-y-1">
 
@@ -64,7 +63,7 @@ function Sidebar({ sidebarExpanded, setSidebarExpanded }) {
 
           {/* ANALYTICS */}
           <h3 className="text-xs uppercase text-gray-400 dark:text-gray-500 font-semibold pl-3 mt-6">
-            ANALYTICS
+            INSIGHTS
           </h3>
           <ul className="mt-3 space-y-1">
 
@@ -97,7 +96,7 @@ function Sidebar({ sidebarExpanded, setSidebarExpanded }) {
                 <svg className={iconClass(pathname === "/Profile")} width="16" height="16" viewBox="0 0 16 16">
                   <path d="M8 8a3 3 0 100-6 3 3 0 000 6z" />
                 </svg>
-                <span className="ml-4 text-sm font-medium">Profile</span>
+                <span className="ml-4 text-sm font-medium">IDEAL Labs Profile</span>
               </div>
             </NavLink>
           </ul>

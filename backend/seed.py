@@ -16,7 +16,7 @@ def seed_ideal_lab():
                 website="https://ideal-labs.com",
                 country="Pakistan",
                 city="Lahore",
-                institute="National University",
+                institute="University of Engineering and Technology",
                 total_researchers=10,
                 active_projects=3,
                 max_project_capacity=5,

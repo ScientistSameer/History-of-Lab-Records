@@ -1,7 +1,10 @@
 import smtplib
 from email.message import EmailMessage
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
-def send_email(to_email: str, subject: str, body: str, from_email: str, password: str, smtp_server="smtp.gmail.com", port=587):
+def send_email(to_email: str, subject: str, body: str, from_email: str, password: str, smtp_server=os.getenv("SMTP_SERVER"), port=os.getenv("SMTP_PORT")):
     """
     Send an email using SMTP
     """

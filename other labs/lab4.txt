@@ -1,0 +1,22 @@
+Bioinformatics and Genomics Laboratory
+
+The Bioinformatics and Genomics Laboratory is a dedicated research lab under the Department of Biotechnology at Life Science University, located in Toronto, Canada. The lab focuses on genomics, protein modeling, computational biology, and bioinformatics applications in healthcare.
+
+The lab workforce consists of 20 researchers in total, including 5 senior researchers, 10 PhD scholars, and 5 research interns.
+
+Currently managing 7 ongoing projects, with capacity for up to 18 projects. Workload score is 6. The lab is available for collaborations.
+
+The lab is equipped with HPC clusters, GPU servers, and advanced bioinformatics pipelines. Equipment level is high, computing resources include HPC and cloud, and funding is medium, supported by grants from national and international agencies.
+
+Collaborates actively with hospitals, biotech firms, and research institutes. Open for collaboration in Genomics, Bioinformatics, Computational Biology, and Healthcare Analytics.
+
+Contact email: bio.lab@lsu.ca
+
+Website: https://bio-lab.lsu.ca
+
+Country: Canada
+City: Toronto
+Institute: Life Science University
+Lab Type: Research Laboratory
+Availability: Available
+Preferred Domains: Genomics, Bioinformatics, Computational Biology, Healthcare Analytics

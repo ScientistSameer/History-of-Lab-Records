@@ -3,14 +3,13 @@ import { useThemeProvider } from '../utils/ThemeContext';
 
 import { chartColors } from './ChartjsConfig';
 import {
-  Chart, BarController, BarElement, LinearScale, TimeScale, Tooltip, Legend,
+  Chart, BarController, BarElement, LinearScale, CategoryScale, Tooltip, Legend,
 } from 'chart.js';
-import 'chartjs-adapter-moment';
 
 // Import utilities
 import { formatValue } from '../utils/Utils';
 
-Chart.register(BarController, BarElement, LinearScale, TimeScale, Tooltip, Legend);
+Chart.register(BarController, BarElement, LinearScale, CategoryScale, Tooltip, Legend);
 
 function BarChart02({
   data,
@@ -57,14 +56,7 @@ function BarChart02({
           },
           x: {
             stacked: true,
-            type: 'time',
-            time: {
-              parser: 'MM-DD-YYYY',
-              unit: 'month',
-              displayFormats: {
-                month: 'MMM YY',
-              },
-            },
+            type: 'category',
             border: {
               display: false,
             },
@@ -91,6 +83,7 @@ function BarChart02({
             backgroundColor: darkMode ? tooltipBgColor.dark : tooltipBgColor.light,
             borderColor: darkMode ? tooltipBorderColor.dark : tooltipBorderColor.light,
           },
+
         },
         interaction: {
           intersect: false,

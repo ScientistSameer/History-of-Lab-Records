@@ -1,27 +1,29 @@
+# backend/app/routers/collaboration.py
+
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from .. import database, models
 from pydantic import BaseModel
 from ..email import send_email
 import os
+from dotenv import load_dotenv
 
+load_dotenv()
 router = APIRouter(prefix="/collaboration", tags=["Collaboration"])
+
 IDEAL_LABS = {
     "id": 0,
     "name": "IDEAL Labs",
     "domain": "Artificial Intelligence",
-    "email": os.getenv("SMTP_EMAIL")  # sender email
+    "email": os.getenv("SMTP_EMAIL")
 }
 
-# -----------------------------
-# Pydantic schema for email
-# -----------------------------
+# ✅ UPDATED: Accept custom subject and body
 class EmailRequest(BaseModel):
     to_lab_id: int
+    subject: str = None  # Optional, will use default if not provided
+    body: str = None     # Optional, will use default if not provided
 
-# -----------------------------
-# DB dependency
-# -----------------------------
 def get_db():
     db = database.SessionLocal()
     try:
@@ -29,9 +31,6 @@ def get_db():
     finally:
         db.close()
 
-# -----------------------------
-# Collaboration Suggestions
-# -----------------------------
 @router.get("/suggestions")
 def get_suggestions(db: Session = Depends(get_db)):
     try:
@@ -53,9 +52,7 @@ def get_suggestions(db: Session = Depends(get_db)):
             })
     return suggestions
 
-# -----------------------------
-# Send Collaboration Email
-# -----------------------------
+# ✅ UPDATED: Use custom subject/body if provided
 @router.post("/send-email")
 def send_collaboration_email(req: EmailRequest, db: Session = Depends(get_db)):
     to_lab = db.query(models.Lab).filter(models.Lab.id == req.to_lab_id).first()
@@ -65,8 +62,10 @@ def send_collaboration_email(req: EmailRequest, db: Session = Depends(get_db)):
     if not to_lab.email:
         raise HTTPException(status_code=400, detail="Recipient lab does not have an email")
 
-    subject = f"Collaboration Proposal from {IDEAL_LABS['name']}"
-    body = f"""
+    # Use custom subject/body if provided, otherwise use defaults
+    subject = req.subject or f"Collaboration Proposal from {IDEAL_LABS['name']}"
+    
+    body = req.body or f"""
 Hello {to_lab.name} Team,
 
 We at {IDEAL_LABS['name']} noticed that our labs share expertise in {IDEAL_LABS['domain']}.
@@ -86,4 +85,4 @@ Best regards,
 
     send_email(to_lab.email, subject, body, FROM_EMAIL, EMAIL_PASSWORD)
 
-    return {"status": "sent", "to": to_lab.email, "subject": subject, "body": body}
+    return {"status": "sent", "to": to_lab.email, "subject": subject}

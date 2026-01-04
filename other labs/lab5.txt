@@ -1,0 +1,22 @@
+Robotics and Autonomous Systems Laboratory
+
+The Robotics and Autonomous Systems Laboratory operates under the Department of Mechanical Engineering at Tech Innovation University, located in Mumbai, India. The lab focuses on robotics, autonomous vehicles, human-robot interaction, and AI-driven control systems.
+
+The lab has 30 researchers in total, including 8 senior researchers, 15 PhD scholars, and 7 research interns.
+
+Currently managing 10 projects, with capacity for up to 25 projects. Workload score is 8. The lab is available for new projects and collaborations.
+
+Infrastructure includes robotic arms, simulation platforms, autonomous vehicle prototypes, and AI test environments. Equipment level is high, computing resources include GPU clusters, HPC, and cloud access, funding is high from government and industry grants.
+
+Collaborates with automotive companies, AI research institutes, and government labs. Open for collaboration in Robotics, Autonomous Systems, AI, and Human-Robot Interaction.
+
+Contact email: robotics.lab@tiuniv.in
+
+Website: https://robotics-lab.tiuniv.in
+
+Country: India
+City: Mumbai
+Institute: Tech Innovation University
+Lab Type: Research Laboratory
+Availability: Available
+Preferred Domains: Robotics, Autonomous Systems, AI, Human-Robot Interaction

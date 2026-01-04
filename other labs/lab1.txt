@@ -1,0 +1,13 @@
+Advanced Artificial Intelligence Research Laboratory
+
+The Advanced Artificial Intelligence Research Laboratory is a dedicated research laboratory operating under the Department of Computer Science at National University, located in Lahore, Pakistan. The laboratory focuses on cutting-edge research in Artificial Intelligence with strong emphasis on Machine Learning, Computer Vision, and Natural Language Processing, while also contributing to interdisciplinary domains such as Data Science and Robotics.
+
+The lab conducts both theoretical and applied research, targeting real-world problems in healthcare systems, smart cities, and autonomous platforms. At present, the laboratory maintains a strong academic and research workforce consisting of 18 researchers in total, including 5 senior researchers, 8 PhD scholars, and 5 research interns actively involved in different research initiatives.
+
+Currently, the laboratory is managing 6 ongoing projects, while it has the operational capacity to handle up to 20 projects simultaneously. Based on current commitments and researcher distribution, the estimated workload score is 7, indicating a balanced utilization of resources. The lab remains available for new collaborations and project intake.
+
+In terms of infrastructure, the laboratory is well-equipped with high-end GPU servers, extensive cloud computing platforms, and direct access to an HPC cluster for large-scale experimentation and model training. Due to this setup, the overall equipment level is considered high, while the funding level is medium, supported through a mix of national and international research grants.
+
+The laboratory actively collaborates with industry partners, government research centers, and academic institutions. It is open to collaboration, particularly in emerging and complementary research areas such as Cybersecurity, Bioinformatics, and the Internet of Things (IoT).
+
+For academic coordination, project proposals, or collaboration inquiries, the laboratory can be contacted via email at smeer.py@gmail.com . Additional information about ongoing research and publications is available on the official website at https://ai-lab.university.edu.

@@ -1,0 +1,22 @@
+Quantum Computing Research Laboratory
+
+The Quantum Computing Research Laboratory operates under the Department of Physics at Global Tech University, located in Cambridge, UK. This laboratory focuses on advanced research in Quantum Computing, Quantum Algorithms, and Quantum Cryptography, while contributing to interdisciplinary areas such as Machine Learning and Material Science.
+
+The lab currently maintains a workforce of 25 researchers in total, including 7 senior researchers, 10 PhD scholars, and 8 research interns actively engaged in various research projects.
+
+At present, the laboratory is managing 8 ongoing projects, with an operational capacity of up to 25 projects. The estimated workload score is 6, ensuring balanced resource utilization. The lab is available for new collaborations and research initiatives.
+
+The laboratory is equipped with state-of-the-art quantum simulators, high-performance computing clusters, and access to cloud-based quantum platforms. The equipment level is high, computing resources include HPC and cloud access, and funding is considered medium, supported by national and international grants.
+
+The lab actively collaborates with tech companies, research institutes, and government agencies. It is open to collaboration in Quantum Cryptography, Machine Learning, and Material Science.
+
+Contact email: quantum.lab@globaltech.ac.uk
+
+Website: https://quantum-lab.globaltech.ac.uk
+
+Country: UK
+City: Cambridge
+Institute: Global Tech University
+Lab Type: Research Laboratory
+Availability: Available
+Preferred Domains: Quantum Computing, Quantum Algorithms, Quantum Cryptography, Machine Learning, Material Science

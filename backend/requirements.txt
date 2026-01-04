@@ -1,8 +1,72 @@
-fastapi
-uvicorn
-sqlalchemy
-pydantic
-python-jose
-passlib[bcrypt]
-databases
-python-multipart
+# Web framework - Latest stable version with Python 3.9+ support
+fastapi>=0.115.0
+
+# ASGI server - Compatible with FastAPI 0.115+
+uvicorn[standard]>=0.30.0
+
+# Database - SQLAlchemy 2.x is the latest and compatible with FastAPI
+sqlalchemy>=2.0.35
+
+# Database async support (if needed)
+# databases>=0.8.0  # Note: This package is deprecated. Use SQLAlchemy 2.x async directly
+
+# Data validation - Pydantic 2.x is latest and compatible with FastAPI
+pydantic>=2.9.0
+pydantic[email]>=2.9.0
+
+# Authentication & Security
+# Note: passlib is no longer maintained and has issues with bcrypt 4.1+
+# Using bcrypt directly is recommended
+python-jose[cryptography]>=3.3.0
+bcrypt>=4.2.0  # Latest version
+
+# For password hashing, use bcrypt directly instead of passlib
+# If you must use passlib, pin to these versions:
+# passlib>=1.7.4
+# bcrypt>=4.0.1,<4.1.0  # passlib has issues with bcrypt 4.1+
+
+# File uploads
+python-multipart>=0.0.12
+
+# Document processing
+pdfplumber>=0.11.4
+python-docx>=1.1.2
+
+# AI / LLM - Latest versions
+openai>=1.55.0
+google-generativeai>=0.8.3  # More commonly used than google-ai-generativelanguage
+google-cloud-aiplatform>=1.71.0
+
+# Environment variables
+python-dotenv>=1.0.1
+
+# ============================================================================
+# IMPORTANT NOTES:
+# ============================================================================
+# 
+# 1. DATABASES PACKAGE IS DEPRECATED:
+#    - The 'databases' package is no longer maintained
+#    - Use SQLAlchemy 2.x with async/await directly
+#    - Install async drivers: pip install asyncpg (PostgreSQL) or aiosqlite (SQLite)
+#
+# 2. PASSLIB COMPATIBILITY ISSUE:
+#    - passlib 1.7.4 (latest) has compatibility issues with bcrypt 4.1.0+
+#    - Recommended: Use bcrypt directly for password hashing
+#    - Alternative: Keep passlib[bcrypt] and pin bcrypt<4.1.0
+#
+# 3. GOOGLE AI PACKAGES:
+#    - google-generativeai is the simpler SDK for Gemini API
+#    - google-ai-generativelanguage is lower-level (less common)
+#    - google-cloud-aiplatform is for Vertex AI (enterprise)
+#
+# 4. PYTHON VERSION REQUIREMENT:
+#    - These versions require Python 3.9 or higher
+#    - FastAPI 0.115+ and Pydantic 2.x work best with Python 3.9+
+#
+# ============================================================================
+# ALTERNATIVE SETUP (if you need passlib):
+# ============================================================================
+# python-jose[cryptography]>=3.3.0
+# passlib[bcrypt]>=1.7.4
+# bcrypt>=4.0.1,<4.1.0  # Pin to avoid compatibility issues
+# ============================================================================
